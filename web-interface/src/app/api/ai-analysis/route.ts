@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+// Python后端服务器配置
+const PYTHON_BACKEND_URL = process.env.PYTHON_BACKEND_URL || 'http://localhost:5000';
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -12,13 +15,58 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 模拟AI分析处理时间
-    await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 2000));
+    // 调用Python后端AI分析接口
+    try {
+      const response = await fetch(`${PYTHON_BACKEND_URL}/api/ai-analysis`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          company: company,
+          analysis_type: analysisType || 'comprehensive'
+        }),
+      });
 
-    // 模拟AI分析结果
-    const analysisResults = {
-      AAPL: {
-        comprehensive: `基于对 ${company} 的全面AI分析：
+      if (response.ok) {
+        const data = await response.json();
+        return NextResponse.json({
+          success: true,
+          analysis: data.analysis,
+          timestamp: data.timestamp || new Date().toISOString(),
+          model: data.model || 'KainanAI-Financial-Analysis-v1.0'
+        });
+      } else {
+        // 如果Python后端不可用，使用本地模拟数据作为备选
+        console.warn('Python后端不可用，使用本地模拟数据');
+        return await getLocalAnalysis(company, analysisType);
+      }
+    } catch (backendError) {
+      console.warn('无法连接到Python后端，使用本地模拟数据:', backendError);
+      return await getLocalAnalysis(company, analysisType);
+    }
+
+  } catch (error) {
+    console.error('AI分析API错误:', error);
+    return NextResponse.json(
+      { 
+        error: 'AI分析服务暂时不可用，请稍后重试',
+        details: error instanceof Error ? error.message : '未知错误'
+      },
+      { status: 500 }
+    );
+  }
+}
+
+// 本地模拟分析作为备选方案
+async function getLocalAnalysis(company: string, analysisType: string) {
+  // 模拟AI分析处理时间
+  await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 2000));
+
+  // 模拟AI分析结果
+  const analysisResults = {
+    AAPL: {
+      comprehensive: `基于对 ${company} 的全面AI分析：
 
 📊 财务健康度评估：优秀
 - 现金流状况：强劲，自由现金流充足
@@ -42,9 +90,9 @@ export async function POST(request: NextRequest) {
 - 相对强弱指数(RSI)：中性
 - 移动平均线：上升趋势
 - 成交量：健康增长`
-      },
-      NVDA: {
-        comprehensive: `基于对 ${company} 的全面AI分析：
+    },
+    NVDA: {
+      comprehensive: `基于对 ${company} 的全面AI分析：
 
 📊 财务健康度评估：优秀
 - 现金流状况：非常强劲，AI芯片需求旺盛
@@ -68,9 +116,9 @@ export async function POST(request: NextRequest) {
 - 相对强弱指数(RSI)：超买区域
 - 移动平均线：强劲上升趋势
 - 成交量：活跃`
-      },
-      MSFT: {
-        comprehensive: `基于对 ${company} 的全面AI分析：
+    },
+    MSFT: {
+      comprehensive: `基于对 ${company} 的全面AI分析：
 
 📊 财务健康度评估：优秀
 - 现金流状况：强劲，云业务贡献显著
@@ -94,9 +142,9 @@ export async function POST(request: NextRequest) {
 - 相对强弱指数(RSI)：中性偏强
 - 移动平均线：稳定上升趋势
 - 成交量：稳定`
-      },
-      GOOGL: {
-        comprehensive: `基于对 ${company} 的全面AI分析：
+    },
+    GOOGL: {
+      comprehensive: `基于对 ${company} 的全面AI分析：
 
 📊 财务健康度评估：优秀
 - 现金流状况：强劲，广告业务现金流稳定
@@ -120,9 +168,9 @@ export async function POST(request: NextRequest) {
 - 相对强弱指数(RSI)：中性
 - 移动平均线：稳定上升趋势
 - 成交量：健康增长`
-      },
-      TSLA: {
-        comprehensive: `基于对 ${company} 的全面AI分析：
+    },
+    TSLA: {
+      comprehensive: `基于对 ${company} 的全面AI分析：
 
 📊 财务健康度评估：良好
 - 现金流状况：改善中，但波动较大
@@ -146,9 +194,9 @@ export async function POST(request: NextRequest) {
 - 相对强弱指数(RSI)：中性偏弱
 - 移动平均线：震荡整理
 - 成交量：活跃`
-      },
-      AMD: {
-        comprehensive: `基于对 ${company} 的全面AI分析：
+    },
+    AMD: {
+      comprehensive: `基于对 ${company} 的全面AI分析：
 
 📊 财务健康度评估：良好
 - 现金流状况：改善中，数据中心业务贡献增加
@@ -172,9 +220,9 @@ export async function POST(request: NextRequest) {
 - 相对强弱指数(RSI)：中性
 - 移动平均线：上升趋势
 - 成交量：稳定增长`
-      },
-      INTC: {
-        comprehensive: `基于对 ${company} 的全面AI分析：
+    },
+    INTC: {
+      comprehensive: `基于对 ${company} 的全面AI分析：
 
 📊 财务健康度评估：一般
 - 现金流状况：面临挑战，自由现金流为负
@@ -198,11 +246,11 @@ export async function POST(request: NextRequest) {
 - 相对强弱指数(RSI)：超卖区域
 - 移动平均线：下降趋势
 - 成交量：萎缩`
-      }
-    };
+    }
+  };
 
-    const result = analysisResults[company as keyof typeof analysisResults]?.[analysisType as keyof typeof analysisResults.AAPL] || 
-      `基于对 ${company} 的AI分析：
+  const result = analysisResults[company as keyof typeof analysisResults]?.[analysisType as keyof typeof analysisResults.AAPL] || 
+    `基于对 ${company} 的AI分析：
 
 📊 财务健康度评估：待评估
 - 建议查看最新的财务报告和季度数据
@@ -232,21 +280,10 @@ export async function POST(request: NextRequest) {
 - 成交量变化
 - 相对强弱指标等`;
 
-    return NextResponse.json({
-      success: true,
-      analysis: result,
-      timestamp: new Date().toISOString(),
-      model: 'KainanAI-Financial-Analysis-v1.0'
-    });
-
-  } catch (error) {
-    console.error('AI分析API错误:', error);
-    return NextResponse.json(
-      { 
-        error: 'AI分析服务暂时不可用，请稍后重试',
-        details: error instanceof Error ? error.message : '未知错误'
-      },
-      { status: 500 }
-    );
-  }
+  return NextResponse.json({
+    success: true,
+    analysis: result,
+    timestamp: new Date().toISOString(),
+    model: 'KainanAI-Financial-Analysis-v1.0 (本地模拟)'
+  });
 }

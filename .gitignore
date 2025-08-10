@@ -1,69 +1,128 @@
-# Dependencies
-node_modules/
+# Python
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
+*.so
 .Python
-env/
-venv/
-.venv/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Next.js
-.next/
-out/
-build/
-dist/
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
 
-# Production
-/build
+# Translations
+*.mo
+*.pot
 
-# Misc
-.DS_Store
-*.tgz
-*.tar.gz
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
 
-# Debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Flask stuff:
+instance/
+.webassets-cache
 
-# Local env files
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# celery beat schedule file
+celerybeat-schedule
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
-# Vercel
-.vercel
+# Spyder project settings
+.spyderproject
+.spyproject
 
-# TypeScript
-*.tsbuildinfo
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
 
 # OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
-# Python
-*.egg-info/
-.pytest_cache/
-.coverage
-htmlcov/
-.tox/
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-.hypothesis/
+# Project specific
+output/*
+!output/.gitkeep
+*.log
+financial_mcp.log
 
-# Output directories
-output/
-logs/
+# Temporary files
+*.tmp
+*.temp
+sample_financial_report.pdf
+sample_financial_report.txt

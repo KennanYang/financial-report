@@ -1,38 +1,88 @@
 export const MOCK_FINANCIAL_DATA = {
   AAPL: {
+    currentPrice: 175.43,
+    marketCap: 2750000,
+    peRatio: 28.4,
     revenue: 394328,
     profit: 96995,
-    growth: 8.1,
-    marketCap: 3000000,
-    peRatio: 31.2
+    eps: 6.16,
+    grossMargin: 43.3,
+    operatingMargin: 29.0,
+    netMargin: 24.6,
+    roe: 15.6,
+    roa: 27.5,
+    debtToEquity: 1.54,
+    revenueGrowth: 8.1,
+    profitGrowth: 5.8,
+    epsGrowth: 5.9
   },
   MSFT: {
+    currentPrice: 345.67,
+    marketCap: 2800000,
+    peRatio: 38.7,
     revenue: 198270,
     profit: 72420,
-    growth: 13.6,
-    marketCap: 2800000,
-    peRatio: 38.7
+    eps: 8.93,
+    grossMargin: 68.2,
+    operatingMargin: 41.5,
+    netMargin: 36.5,
+    roe: 39.8,
+    roa: 18.9,
+    debtToEquity: 0.89,
+    revenueGrowth: 13.6,
+    profitGrowth: 12.8,
+    epsGrowth: 13.2
   },
   GOOGL: {
+    currentPrice: 165.89,
+    marketCap: 1800000,
+    peRatio: 23.6,
     revenue: 307394,
     profit: 76033,
-    growth: 8.9,
-    marketCap: 1800000,
-    peRatio: 23.6
+    eps: 3.22,
+    grossMargin: 56.8,
+    operatingMargin: 24.7,
+    netMargin: 24.7,
+    roe: 25.3,
+    roa: 15.8,
+    debtToEquity: 0.12,
+    revenueGrowth: 8.9,
+    profitGrowth: 7.2,
+    epsGrowth: 7.8
   },
   AMZN: {
+    currentPrice: 155.23,
+    marketCap: 1600000,
+    peRatio: 52.6,
     revenue: 574785,
     profit: 30425,
-    growth: 11.8,
-    marketCap: 1600000,
-    peRatio: 52.6
+    eps: 2.89,
+    grossMargin: 45.2,
+    operatingMargin: 5.3,
+    netMargin: 5.3,
+    roe: 12.8,
+    roa: 4.2,
+    debtToEquity: 1.23,
+    revenueGrowth: 11.8,
+    profitGrowth: 18.5,
+    epsGrowth: 19.2
   },
   TSLA: {
+    currentPrice: 240.56,
+    marketCap: 800000,
+    peRatio: 53.3,
     revenue: 96773,
     profit: 15000,
-    growth: 18.8,
-    marketCap: 800000,
-    peRatio: 53.3
+    eps: 4.51,
+    grossMargin: 18.2,
+    operatingMargin: 15.5,
+    netMargin: 15.5,
+    roe: 23.4,
+    roa: 8.9,
+    debtToEquity: 0.67,
+    revenueGrowth: 18.8,
+    profitGrowth: 25.6,
+    epsGrowth: 26.8
   }
 };
 

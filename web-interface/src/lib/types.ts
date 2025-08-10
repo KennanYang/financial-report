@@ -1,5 +1,6 @@
 export interface Company {
   id: string;
+  symbol: string;
   name: string;
   sector: string;
   industry: string;
@@ -13,6 +14,9 @@ export interface FinancialReport {
   data: any;
   insights: string[];
   createdAt: Date;
+  investmentRating?: 'Strong Buy' | 'Buy' | 'Hold' | 'Sell' | 'Strong Sell';
+  targetPrice?: number;
+  riskLevel?: 'Low' | 'Medium' | 'High';
 }
 
 export interface AppState {
@@ -24,10 +28,20 @@ export interface AppState {
 }
 
 export interface FinancialMetrics {
-  revenue: number;
-  profit: number;
-  growth: number;
+  currentPrice: number;
   marketCap: number;
   peRatio: number;
+  revenue: number;
+  profit: number;
+  eps: number;
+  grossMargin: number;
+  operatingMargin: number;
+  netMargin: number;
+  roe: number;
+  roa: number;
+  debtToEquity: number;
+  revenueGrowth: number;
+  profitGrowth: number;
+  epsGrowth: number;
 }
 

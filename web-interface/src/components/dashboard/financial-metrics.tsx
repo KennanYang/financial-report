@@ -84,10 +84,10 @@ export function FinancialMetrics() {
 
           <div className="space-y-2">
             <div className="text-sm text-muted-foreground">净利润</div>
-            <div className="text-xl font-semibold">{formatCurrency(metrics.netIncome)}</div>
-            <div className={`flex items-center text-sm ${getGrowthColor(metrics.netIncomeGrowth)}`}>
-              {getGrowthIcon(metrics.netIncomeGrowth)}
-              <span className="ml-1">{formatPercentage(metrics.netIncomeGrowth)}</span>
+            <div className="text-xl font-semibold">{formatCurrency(metrics.profit)}</div>
+            <div className={`flex items-center text-sm ${getGrowthColor(metrics.profitGrowth)}`}>
+              {getGrowthIcon(metrics.profitGrowth)}
+              <span className="ml-1">{formatPercentage(metrics.profitGrowth)}</span>
             </div>
           </div>
 
@@ -100,7 +100,7 @@ export function FinancialMetrics() {
             </div>
           </div>
 
-          {/* 利润率 */}
+          {/* 利润率指标 */}
           <div className="space-y-2">
             <div className="text-sm text-muted-foreground">毛利率</div>
             <div className="text-xl font-semibold">{formatPercentage(metrics.grossMargin)}</div>
@@ -116,7 +116,7 @@ export function FinancialMetrics() {
             <div className="text-xl font-semibold">{formatPercentage(metrics.netMargin)}</div>
           </div>
 
-          {/* 财务健康度 */}
+          {/* 投资回报指标 */}
           <div className="space-y-2">
             <div className="text-sm text-muted-foreground">ROE</div>
             <div className="text-xl font-semibold">{formatPercentage(metrics.roe)}</div>
