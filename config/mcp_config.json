@@ -1,0 +1,51 @@
+{
+  "server": {
+    "name": "financial-report-mcp-server",
+    "version": "1.0.0",
+    "description": "财务报告生成MCP服务器",
+    "capabilities": {
+      "tools": true,
+      "resources": true,
+      "prompts": false
+    }
+  },
+  "tools": {
+    "financial_data": {
+      "enabled": true,
+      "description": "获取财务数据工具"
+    },
+    "report_generator": {
+      "enabled": true,
+      "description": "生成财务报告工具"
+    },
+    "data_analyzer": {
+      "enabled": true,
+      "description": "数据分析工具"
+    },
+    "ocr_tools": {
+      "enabled": true,
+      "description": "OCR和PDF处理工具"
+    },
+    "company_report_generator": {
+      "enabled": true,
+      "description": "公司财报生成工具"
+    },
+    "ai_enhanced_report_generator": {
+      "enabled": true,
+      "description": "AI增强报告生成工具",
+      "ollama_url": "http://localhost:11434",
+      "ollama_model": "deepseek-r1:7b",
+      "use_ollama": true
+    }
+  },
+  "resources": {
+    "financial_reports": {
+      "enabled": true,
+      "description": "财务报告资源"
+    }
+  },
+  "logging": {
+    "level": "INFO",
+    "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  }
+} 

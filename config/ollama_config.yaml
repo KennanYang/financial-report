@@ -1,0 +1,65 @@
+# Ollama配置
+ollama:
+  # Ollama服务配置
+  service:
+    base_url: "http://localhost:11434"
+    timeout: 120  # 秒
+    retry_attempts: 3
+    
+  # 默认模型配置
+  default_model: "deepseek-r1:7b"
+  
+  # 模型配置
+  models:
+    deepseek-r1:7b:
+      name: "deepseek-r1:7b"
+      description: "DeepSeek R1 7B 模型"
+      temperature: 0.7
+      max_tokens: 2048
+      system_prompt: "你是一个专业的财务分析师，擅长分析公司财务状况和投资价值。"
+      
+    llama3.1-8b:
+      name: "llama3.1-8b"
+      description: "Llama 3.1 8B 模型"
+      temperature: 0.7
+      max_tokens: 2048
+      system_prompt: "你是一个专业的财务分析师，擅长分析公司财务状况和投资价值。"
+      
+    qwen2.5-7b:
+      name: "qwen2.5-7b"
+      description: "Qwen 2.5 7B 模型"
+      temperature: 0.7
+      max_tokens: 2048
+      system_prompt: "你是一个专业的财务分析师，擅长分析公司财务状况和投资价值。"
+
+# AI功能配置
+ai_features:
+  # 公司分析
+  company_analysis:
+    enabled: true
+    default_analysis_type: "comprehensive"
+    supported_types: ["financial", "investment", "risk", "comprehensive"]
+    
+  # 报告生成
+  report_generation:
+    enabled: true
+    default_style: "professional"
+    supported_styles: ["professional", "simple", "detailed"]
+    
+  # 投资建议
+  investment_advice:
+    enabled: true
+    default_horizon: "long_term"
+    supported_horizons: ["short_term", "medium_term", "long_term"]
+
+# 输出配置
+output:
+  # 报告输出目录
+  reports_directory: "./output/reports"
+  
+  # 日志配置
+  logging:
+    level: "INFO"
+    file: "./logs/ollama_ai.log"
+    max_size: "10MB"
+    backup_count: 5

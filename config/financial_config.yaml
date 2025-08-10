@@ -1,0 +1,54 @@
+# 财务数据配置
+financial_data:
+  # 数据源配置
+  data_sources:
+    yahoo_finance:
+      enabled: true
+      base_url: "https://query1.finance.yahoo.com"
+      timeout: 30
+      
+    alpha_vantage:
+      enabled: false
+      api_key: "${ALPHA_VANTAGE_API_KEY}"
+      base_url: "https://www.alphavantage.co/query"
+      
+    csv_files:
+      enabled: true
+      data_directory: "./data/csv"
+      
+    excel_files:
+      enabled: true
+      data_directory: "./data/excel"
+
+# 报告配置
+reports:
+  templates:
+    directory: "./templates"
+    default_template: "standard_report.html"
+    
+  output:
+    directory: "./output"
+    formats: ["pdf", "html", "excel"]
+    
+  charts:
+    enabled: true
+    style: "seaborn"
+    figure_size: [12, 8]
+
+# 数据库配置
+database:
+  type: "sqlite"
+  path: "./data/financial.db"
+  
+# 缓存配置
+cache:
+  enabled: true
+  ttl: 3600  # 1小时
+  directory: "./cache"
+
+# 日志配置
+logging:
+  level: "INFO"
+  file: "./logs/financial_mcp.log"
+  max_size: "10MB"
+  backup_count: 5 
