@@ -8,23 +8,38 @@ export interface Company {
 
 export interface FinancialReport {
   id: string;
-  companyId: string;
-  type: string;
-  period: string;
-  data: any;
-  insights: string[];
-  createdAt: Date;
-  investmentRating?: 'Strong Buy' | 'Buy' | 'Hold' | 'Sell' | 'Strong Sell';
-  targetPrice?: number;
-  riskLevel?: 'Low' | 'Medium' | 'High';
+  company: Company;
+  reportType: 'comprehensive' | 'financial' | 'investment';
+  generatedAt: Date;
+  aiInsights: string[];
+  investmentRating: 'Strong Buy' | 'Buy' | 'Hold' | 'Sell' | 'Strong Sell';
+  targetPrice: number;
+  riskLevel: 'Low' | 'Medium' | 'High';
+  timeframe: string;
 }
 
 export interface AppState {
   companies: Company[];
-  selectedCompany: Company | null;
+  selectedCompany: Company;
+  financialData: Record<string, FinancialMetrics>;
+  priceData: Record<string, PriceData>;
+  revenueSegments: Record<string, RevenueSegment[]>;
+  competitorData: Record<string, CompetitorData>;
   reports: FinancialReport[];
   loading: boolean;
-  error: string | null;
+  theme: 'light' | 'dark';
+  timeframe: '1M' | '3M' | '6M' | '1Y' | '2Y' | '5Y' | 'ALL';
+  
+  // Actions
+  setSelectedCompany: (company: Company) => void;
+  setTimeframe: (timeframe: AppState['timeframe']) => void;
+  setTheme: (theme: AppState['theme']) => void;
+  setLoading: (loading: boolean) => void;
+  generateReport: (reportType: FinancialReport['reportType']) => Promise<void>;
+  getCurrentFinancialData: () => FinancialMetrics | null;
+  getCurrentPriceData: () => PriceData | null;
+  getCurrentRevenueSegments: () => RevenueSegment[] | null;
+  getCurrentCompetitorData: () => CompetitorData | null;
 }
 
 export interface FinancialMetrics {
@@ -43,5 +58,25 @@ export interface FinancialMetrics {
   revenueGrowth: number;
   profitGrowth: number;
   epsGrowth: number;
+}
+
+export interface PriceData {
+  dates: string[];
+  prices: number[];
+  volumes: number[];
+}
+
+export interface RevenueSegment {
+  name: string;
+  value: number;
+  percentage: number;
+}
+
+export interface CompetitorData {
+  competitors: Array<{
+    name: string;
+    marketShare: number;
+    revenue: number;
+  }>;
 }
 

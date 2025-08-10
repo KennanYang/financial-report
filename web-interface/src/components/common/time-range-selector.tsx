@@ -26,7 +26,7 @@ export function TimeRangeSelector() {
   const currentTimeframe = TIME_RANGES.find(t => t.value === timeframe) || TIME_RANGES[0];
 
   const handleTimeframeSelect = (value: string) => {
-    setTimeframe(value as '1M' | '3M' | '6M' | '1Y' | '3Y');
+    setTimeframe(value as '1M' | '3M' | '6M' | '1Y' | '2Y' | '5Y' | 'ALL');
     setOpen(false);
   };
 

@@ -94,6 +94,7 @@ export const BRAND_CONFIG = {
   name: '恺南AI财务分析',
   tagline: 'AI驱动的智能财务洞察',
   description: '智能财务数据分析和报告生成平台',
-  version: '1.0.0'
+  version: '1.0.0',
+  copyright: '© 2024 恺南 Kennan. 保留所有权利。'
 };
 
